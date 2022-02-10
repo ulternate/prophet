@@ -320,6 +320,12 @@ with open("README.md", "r", encoding="utf-8") as f:
 with open("requirements.txt", "r") as f:
     install_requires = f.read().splitlines()
 
+    backends = get_backends_from_env()
+    if "CMDSTANPY" in backends:
+        install_requires.append("cmdstanpy==0.9.77")
+    if "PYSTAN" in backends:
+        install_requires.append("pystan~=2.19.1.1")
+
 setup(
     name="prophet",
     version="1.0.1",
